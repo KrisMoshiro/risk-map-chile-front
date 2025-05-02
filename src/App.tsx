@@ -8,6 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { API } from "./api/config";
 
 const sections = [
   {
@@ -44,6 +45,7 @@ const sections = [
 
 function App() {
   const [mapIndexes, setMapIndexes] = useState<number[]>(sections.map(() => 0));
+  const [selectMap, setSelectMap] = useState<1|2|3>(1)
 
   const handleMapChange = (sectionIndex: number, newIndex: number) => {
     const updated = [...mapIndexes];
@@ -51,13 +53,16 @@ function App() {
     setMapIndexes(updated);
   };
 
+  
+
+
   return (
     <>
       <CssBaseline />
       <AppBar position="fixed" color="primary" elevation={2}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Risk Map Iquique Project
+            Risk Map Iquique Project 
           </Typography>
         </Toolbar>
       </AppBar>
@@ -103,7 +108,10 @@ function App() {
                   variant={
                     mapIndexes[idx] === mapIdx ? "contained" : "outlined"
                   }
-                  onClick={() => handleMapChange(idx, mapIdx)}
+                  onClick={() => {
+                    setSelectMap(()=>mapIdx+1)
+                    handleMapChange(idx, mapIdx)
+                  }}
                   size="small"
                 >
                   Mapa {mapIdx + 1}
@@ -125,14 +133,17 @@ function App() {
                 },
               }}
             >
+             {
+              
               <iframe
-                src={section.maps[mapIndexes[idx]]}
-                title={`Mapa ${idx + 1}`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-              />
+              src={`${API}/${selectMap}`}
+              title={`Mapa ${idx + 1}`}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+            />
+             }
             </Box>
           </Container>
         ))}
