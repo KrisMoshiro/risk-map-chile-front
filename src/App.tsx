@@ -153,22 +153,22 @@ function App() {
               {
                 title: "1. Comprensión del Negocio",
                 paragraphs: [
-                  "El proyecto busca analizar los accidentes de tránsito ocurridos en la región de Tarapacá, Chile, utilizando técnicas de minería de datos para identificar zonas críticas.",
-                  "El objetivo principal es contribuir a la prevención de accidentes y la optimización de la planificación urbana y vial.",
+                  "Este proyecto busca analizar los accidentes de tránsito ocurridos en la región de Tarapacá, Chile, utilizando técnicas de minería de datos para identificar zonas críticas.",
+                  "El objetivo principal es contribuir a la prevención de accidentes y la optimización de la planificación urbana y vial en la región de Tarapacá, utilizando registros de siniestros automovilísticos durante los años 2010 a 2023.",
                 ],
                 subSections: [
                   {
-                    subtitle: "Problemas abordados:",
+                    subtitle: "Problema abordado:",
                     items: [
-                      "Alta incidencia de accidentes en ciertos sectores de la ciudad.",
-                      "Necesidad de segmentar los datos por horarios para identificar patrones temporales.",
+                      "En Chile, la Comisión Nacional de Seguridad de Tránsito (CONASET) cuenta con registros de siniestros viales, sin embargo, la información disponible se presenta únicamente en forma de reportes con métricas y gráficos, en cambio Carabineros de Chile cuenta con los registros en bruto, en ambos casos ninguno cuenta con acceso directo a herramientas de visualización geográfica. Esto genera una problemática en la accesibilidad, presentación y aprovechamiento de la información, dificultando su uso para análisis más profundos y toma de decisiones informadas."
                     ],
                   },
                   {
                     subtitle: "Restricciones:",
                     items: [
-                      "Datos geoespaciales con posibles inconsistencias.",
                       "Limitaciones temporales y tecnológicas para la integración de mapas dinámicos.",
+                      "Los datos deben incluir registros ocurridos en la región de Tarapacá, esto aplica a zonas urbanas, y rurales.",
+                      "Los registros deben ir acompañados de datos geoespaciales,la fecha y hora del siniestro.",
                     ],
                   },
                   {
@@ -183,7 +183,7 @@ function App() {
               {
                 title: "2. Comprensión de los Datos",
                 paragraphs: [
-                  "Se trabajó con un conjunto de datos proporcionado por el portal de Datos Abiertos de la Municipalidad de Santiago, que incluye información como fecha, hora, latitud, longitud y tipo de accidente.",
+                  "Los registros públicos de Carabineros de Chile son datos en bruto y no están segmentados por región o zona solo por año, estos incluyen información del siniestro como fecha, hora, tipo de accidente, región, comuna, etc.",
                 ],
                 subSections: [
                   {
@@ -191,21 +191,18 @@ function App() {
                     items: [
                       "Revisión de la estructura del archivo CSV.",
                       "Análisis exploratorio con pandas para entender la distribución de los datos.",
-                      "Validación de la consistencia de coordenadas y tramos horarios.",
+                      "Validación de la consistencia de coordenadas, tramos horarios y niveles de afectación.",
                     ],
                   },
-                  {
-                    subtitle: "",
-                    items: [
-                      "Este análisis permitió definir que el enfoque se realizaría sobre cuatro tramos horarios específicos: madrugada (00-06), mañana (06-12), tarde (12-19) y noche (19-00).",
-                    ],
-                  },
+                ],
+                extraParagraphs: [
+                  "Este análisis permitió definir los filtros que tendrán los mapas esperados, el primero se enfoca sobre cuatro tramos horarios específicos: madrugada (00-06), mañana (06-12), tarde (12-19) y noche (19-00) y el segundo se enfoca en cinco niveles de afectación: muertos, graves, menos graves, leves e ilesos.",
                 ],
               },
               {
                 title: "3. Preparación de los Datos",
                 paragraphs: [
-                  "La preparación se realizó de manera independiente por cada tramo horario, dividiendo el archivo principal en cuatro subconjuntos. Para cada uno:",
+                  "Se aplicaron métodos para realizar la correlación entre los datos del dataset para identificar qué features no serían utilizados, en este caso para el contexto del proyecto y el mismo dataset, la mayoría de los samples son variables cualitativas, sólo unas pocas son cuantitativas.",
                 ],
                 subSections: [
                   {
@@ -213,37 +210,33 @@ function App() {
                     items: [
                       "Limpieza: eliminación de registros con valores nulos o coordenadas inválidas.",
                       "Transformación: ajuste de formatos de hora, conversión de columnas a tipos adecuados.",
-                      "Segmentación: filtrado por horario y almacenamiento en nuevos archivos CSV.",
+                      "Geocodificación: transformación de direcciones en coordenadas de latitud y longitud."
                     ],
                   },
-                  {
-                    subtitle: "",
-                    items: [
-                      "Este paso fue esencial para garantizar que el análisis por clustering se realizará correctamente y sin interferencias entre horarios.",
-                    ],
-                  },
+                ],
+                extraParagraphs: [
+                  "Esto es esencial para limpiar y unificar los datos, por otra parte la geocodificación era imprescindible ya que era necesario obtener las coordenadas en latitud y longitud para ubicar los accidentes.",
                 ],
               },
               {
                 title: "4. Modelado de Datos",
                 paragraphs: [
-                  "Se aplicó el algoritmo KMeans para identificar conglomerados de accidentes en cada tramo horario. Para ello se seleccionó un número de clusters estimado en base a la distribución visual de los datos, utilizando un enfoque empírico (3 clusters por horario).",
+                  "Para determinar el algoritmo de minería de datos adecuado, se consideraron tanto los objetivos técnicos como los del negocio. El objetivo de minería de datos fue identificar los puntos con mayor probabilidad de ocurrencia de accidentes de tránsito en la región de Tarapacá, mientras que el objetivo de la CONASET es reducir estos accidentes y sus consecuencias, enfocándose en el control de factores de riesgo. Al analizar ambos enfoques, se concluyó que el problema corresponde a una tarea de segmentación espacial, ya que implica agrupar incidentes por zonas de alto riesgo. Por ello, se optó por utilizar un algoritmo de clustering.",
                 ],
                 subSections: [
                   {
                     subtitle: "Herramientas utilizadas:",
                     items: [
                       "Python",
-                      "Scikit-learn (para clustering)",
-                      "Folium (para visualización geográfica)",
+                      "Numpy",
+                      "Matplotlib",
+                      "Sklearn",
+                      "Folium",
                     ],
                   },
-                  {
-                    subtitle: "",
-                    items: [
-                      "Cada modelo generó un conjunto de centroides que representan las zonas con mayor concentración de accidentes por horario.",
-                    ],
-                  },
+                ],
+                extraParagraphs: [
+                  "Se aplicó un algoritmo con DBSCAN para identificar automáticamente el número de clusters, después con folium se define el punto central del mapa sacando el promedio de las coordenadas, después los datos se segmentan según los dos grupos elegidos para posteriormente graficar el mapa centrado junto con los clusters.",
                 ],
               },
               {
@@ -258,23 +251,24 @@ function App() {
                       "Se observaron los mapas generados con Folium para comprobar que los clusters correspondían a zonas lógicamente agrupadas.",
                       "Se validaron los resultados con observaciones empíricas de la ciudad (zonas congestionadas, zonas con vida nocturna, etc.).",
                       "Se verificó la coherencia entre horarios (por ejemplo, aumento de accidentes nocturnos en sectores de entretenimiento).",
-                      "La calidad del clustering fue considerada adecuada para los fines del proyecto, aunque se mencionó la posibilidad de implementar métricas como la silueta o el codo en futuras iteraciones.",
                     ],
                   },
+                ],
+                extraParagraphs: [
+                  "La calidad del clustering fue considerada adecuada para los fines del proyecto, aunque se mencionó la posibilidad de implementar métricas como la silueta o el codo en futuras iteraciones.",
                 ],
               },
               {
                 title: "6. Implementación",
                 paragraphs: [
-                  "Los resultados se integraron en un conjunto de mapas interactivos generados con Folium, uno por cada tramo horario. Cada mapa muestra los clusters detectados con diferente color y permite visualizar la latitud y longitud de los centroides.",
+                  "Los resultados se integraron en la presente plataforma web para su visualización en diferentes dispositivos, la cual fue desarrollada en React JS con Typescript y Material Design.",
                 ],
                 subSections: [
                   {
                     subtitle: "Aspectos destacables:",
                     items: [
-                      "Los mapas permiten una exploración visual clara por horario.",
-                      "El sistema puede escalarse fácilmente para analizar más periodos o zonas.",
-                      "Se plantea como trabajo futuro la integración de todos los tramos en una interfaz unificada con control dinámico por horario, y la mejora del diseño visual y la adaptabilidad del sistema para distintos dispositivos.",
+                      "Los mapas permiten una exploración visual clara de las zonas con más siniestros en la región.",
+                      "El algoritmo y sistema puede escalar fácilmente para analizar más otras regiones o otros países.",
                     ],
                   },
                 ],
@@ -287,44 +281,74 @@ function App() {
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <>
+                <Box
+                  sx={{
+                    p: 3
+                  }}
+                >
                   <Typography variant="h6" color="primary" gutterBottom>
                     {step.title}
                   </Typography>
-                  <Box
-                    sx={{
-                      mb: 6,
-                      p: 3,
 
-                    }}
-                  >
-                    {step.paragraphs.map((p, i) => (
-                      <Typography key={i} variant="body1" paragraph>
-                        {p}
-                      </Typography>
-                    ))}
+                  {step.paragraphs.map((p, i) => (
+                    <Typography key={i} variant="body1" paragraph>
+                      {p}
+                    </Typography>
+                  ))}
 
-                    {step.subSections.map((sub, j) => (
-                      <Box key={j} sx={{ mt: 2 }}>
-                        {sub.subtitle && (
+                  {step.subSections.map((sub, j) => (
+                    <Box key={j} sx={{ mt: 2 }}>
+                      {/* Caso: subtítulo presente y un solo item => título + párrafo */}
+                      {sub.subtitle && sub.items.length === 1 ? (
+                        <>
                           <Typography
                             variant="subtitle1"
                             sx={{ fontWeight: "bold" }}
                           >
                             {sub.subtitle}
                           </Typography>
-                        )}
-                        <ul style={{ margin: 0, paddingLeft: "1.2rem" }}>
-                          {sub.items.map((item, k) => (
-                            <li key={k}>
-                              <Typography variant="body2">{item}</Typography>
-                            </li>
-                          ))}
-                        </ul>
-                      </Box>
+                          <Typography variant="body1">
+                            {sub.items[0]}
+                          </Typography>
+                        </>
+                      ) : !sub.subtitle && sub.items.length === 1 ? (
+                        // Caso: sin subtítulo y un solo item => solo párrafo
+                        <Typography variant="body1">{sub.items[0]}</Typography>
+                      ) : (
+                        // Caso: subtítulo + lista (más de 1 ítem)
+                        <>
+                          {sub.subtitle && (
+                            <Typography
+                              variant="subtitle1"
+                              sx={{ fontWeight: "bold" }}
+                            >
+                              {sub.subtitle}
+                            </Typography>
+                          )}
+                          <ul style={{ margin: 0, paddingLeft: "1.2rem" }}>
+                            {sub.items.map((item, k) => (
+                              <li key={k}>
+                                <Typography variant="body2">{item}</Typography>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                    </Box>
+                  ))}
+
+                  {/* Extra párrafos fuera de las listas */}
+                  {step.extraParagraphs &&
+                    step.extraParagraphs.map((p, i) => (
+                      <Typography
+                        key={`extra-${i}`}
+                        variant="body1"
+                        sx={{ mt: 2 }}
+                      >
+                        {p}
+                      </Typography>
                     ))}
-                  </Box>
-                </>
+                </Box>
               </motion.div>
             ))}
           </Container>
