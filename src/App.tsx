@@ -52,7 +52,7 @@ function App() {
 
   const toggleTheme = () => setDarkMode((prev) => !prev);
 
-  const acronym = "RMI Project"; // Acrónimo: Risk Map Iquique Project
+  const acronym = "RMI Project";
 
   return (
     <ThemeProvider theme={theme}>
@@ -160,7 +160,7 @@ function App() {
                   {
                     subtitle: "Problema abordado:",
                     items: [
-                      "En Chile, la Comisión Nacional de Seguridad de Tránsito (CONASET) cuenta con registros de siniestros viales, sin embargo, la información disponible se presenta únicamente en forma de reportes con métricas y gráficos, en cambio Carabineros de Chile cuenta con los registros en bruto, en ambos casos ninguno cuenta con acceso directo a herramientas de visualización geográfica. Esto genera una problemática en la accesibilidad, presentación y aprovechamiento de la información, dificultando su uso para análisis más profundos y toma de decisiones informadas."
+                      "En Chile, la Comisión Nacional de Seguridad de Tránsito (CONASET) cuenta con registros de siniestros viales, sin embargo, la información disponible se presenta únicamente en forma de reportes con métricas y gráficos, en cambio Carabineros de Chile cuenta con los registros en bruto, en ambos casos ninguno cuenta con acceso directo a herramientas de visualización geográfica. Esto genera una problemática en la accesibilidad, presentación y aprovechamiento de la información, dificultando su uso para análisis más profundos y toma de decisiones informadas.",
                     ],
                   },
                   {
@@ -210,7 +210,7 @@ function App() {
                     items: [
                       "Limpieza: eliminación de registros con valores nulos o coordenadas inválidas.",
                       "Transformación: ajuste de formatos de hora, conversión de columnas a tipos adecuados.",
-                      "Geocodificación: transformación de direcciones en coordenadas de latitud y longitud."
+                      "Geocodificación: transformación de direcciones en coordenadas de latitud y longitud.",
                     ],
                   },
                 ],
@@ -268,7 +268,7 @@ function App() {
                     subtitle: "Aspectos destacables:",
                     items: [
                       "Los mapas permiten una exploración visual clara de las zonas con más siniestros en la región.",
-                      "El algoritmo y sistema puede escalar fácilmente para analizar más otras regiones o otros países.",
+                      "El algoritmo y sistema puede escalar fácilmente para analizar otras regiones o otros países.",
                     ],
                   },
                 ],
@@ -283,7 +283,7 @@ function App() {
               >
                 <Box
                   sx={{
-                    p: 3
+                    p: 3,
                   }}
                 >
                   <Typography variant="h6" color="primary" gutterBottom>
@@ -298,7 +298,6 @@ function App() {
 
                   {step.subSections.map((sub, j) => (
                     <Box key={j} sx={{ mt: 2 }}>
-                      {/* Caso: subtítulo presente y un solo item => título + párrafo */}
                       {sub.subtitle && sub.items.length === 1 ? (
                         <>
                           <Typography
@@ -312,10 +311,8 @@ function App() {
                           </Typography>
                         </>
                       ) : !sub.subtitle && sub.items.length === 1 ? (
-                        // Caso: sin subtítulo y un solo item => solo párrafo
                         <Typography variant="body1">{sub.items[0]}</Typography>
                       ) : (
-                        // Caso: subtítulo + lista (más de 1 ítem)
                         <>
                           {sub.subtitle && (
                             <Typography
@@ -336,8 +333,6 @@ function App() {
                       )}
                     </Box>
                   ))}
-
-                  {/* Extra párrafos fuera de las listas */}
                   {step.extraParagraphs &&
                     step.extraParagraphs.map((p, i) => (
                       <Typography
