@@ -1,19 +1,26 @@
 {
   "name": "risk-map-iquique-front",
+  "homepage": "https://krismoshiro.github.io/risk-map-iquique-front/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.2",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1",
     "@tailwindcss/vite": "^4.1.4",
+    "axios": "^1.9.0",
+    "framer-motion": "^12.17.0",
+    "gh-pages": "^6.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.4"
