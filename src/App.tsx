@@ -20,13 +20,15 @@ import Logo from "./assets/logo.png";
 
 const mapSources = [
   {
+    title: "Mapa base",
+    src: "https://risk-map-iquique-back.onrender.com/map/basic",
+  },
+  {
     title: "Por nivel de afectación",
-    description: "Mapa con minería de datos sobre accidentes en Tarapacá.",
     src: "https://risk-map-iquique-back.onrender.com/map/level-affectation",
   },
   {
     title: "Por rango de horas",
-    description: "Mapa con minería de datos sobre muertes en accidentes.",
     src: "https://risk-map-iquique-back.onrender.com/map/hr",
   },
 ];
@@ -261,7 +263,7 @@ function App() {
               {
                 title: "6. Implementación",
                 paragraphs: [
-                  "Los resultados se integraron en la presente plataforma web para su visualización en diferentes dispositivos, la cual fue desarrollada en React JS con Typescript y Material Design.",
+                  "El código de minería en Python fue implementado en un Back-end creado con Fast API, para generar los mapas automáticamente y enviarlos a una plataforma web Front-end desarrollada en React JS con Typescript y Material Design para su visualización en diversos dispositivos.",
                 ],
                 subSections: [
                   {
