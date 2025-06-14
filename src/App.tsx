@@ -20,14 +20,14 @@ import Logo from "./assets/logo.png";
 
 const mapSources = [
   {
-    title: "Por estado de involucrados",
+    title: "Por nivel de afectación",
     description: "Mapa con minería de datos sobre accidentes en Tarapacá.",
-    src: "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map1.html",
+    src: "https://risk-map-iquique-back.onrender.com/map/level-affectation",
   },
   {
     title: "Por rango de horas",
     description: "Mapa con minería de datos sobre muertes en accidentes.",
-    src: "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map4.html",
+    src: "https://risk-map-iquique-back.onrender.com/map/hr",
   },
 ];
 
