@@ -3,10 +3,9 @@ import { useState } from "react";
 
 interface MapDisplayProps {
   mapSources: { src: string }[];
-  activeMap: number;
 }
 
-export const MapDisplay = ({ mapSources, activeMap }: MapDisplayProps) => {
+export const MapDisplay = ({ mapSources}: MapDisplayProps) => {
   const [loaded, setLoaded] = useState<boolean[]>(
     Array(mapSources.length).fill(false)
   );
@@ -39,10 +38,6 @@ export const MapDisplay = ({ mapSources, activeMap }: MapDisplayProps) => {
             borderRadius: 2,
             overflow: "hidden",
             boxShadow: 4,
-            zIndex: i === activeMap ? 1 : 0,
-            visibility: i === activeMap || loaded[i] ? "visible" : "hidden",
-            opacity: i === activeMap ? 1 : 0,
-            transition: "opacity 0.3s ease",
           }}
         >
           {!loaded[i] && (

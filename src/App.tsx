@@ -16,16 +16,13 @@ import { useMediaQuery } from "@mui/material";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { ProjectExplanation } from "./components/explanation";
-import { MapSelector } from "./components/mapselector";
 import { MapDisplay } from "./components/mapdisplay";
 import { LegendAndControl } from "./components/legendcontrol";
 
 const mapSources = [
-  {
-    title: "Mapa base",
-    src: "./src/assets/html/map-basic.html",
-  }
+  { src: "./src/assets/html/Map.html" },
 ];
+
 const explanationSteps = [
   {
     title: "1. Comprensión del Negocio",
@@ -72,9 +69,6 @@ const explanationSteps = [
         ],
       },
     ],
-    extraParagraphs: [
-      "Este análisis permitió definir los filtros que tendrán los mapas esperados, el primero se enfoca sobre cuatro tramos horarios específicos: madrugada (00-06), mañana (06-12), tarde (12-19) y noche (19-00) y el segundo se enfoca en cinco niveles de afectación: muertos, graves, menos graves, leves e ilesos.",
-    ],
   },
   {
     title: "3. Preparación de los Datos",
@@ -107,7 +101,7 @@ const explanationSteps = [
       },
     ],
     extraParagraphs: [
-      "Se aplicó un algoritmo con DBSCAN para identificar automáticamente el número de clusters, después con folium se define el punto central del mapa sacando el promedio de las coordenadas, después los datos se segmentan según los dos grupos elegidos para posteriormente graficar el mapa centrado junto con los clusters.",
+      "Se aplicó un algoritmo con DBSCAN para identificar automáticamente el número de clusters, esto se validó con el coeficiente de silhouette, después con folium se define el punto central del mapa sacando el promedio de las coordenadas, posteriormente los datos se segmentan según la concentración de accidentes para posteriormente graficar el mapa centrado junto con los clusters.",
     ],
   },
   {
@@ -119,14 +113,14 @@ const explanationSteps = [
       {
         subtitle: "",
         items: [
-          "Se observaron los mapas generados con Folium para comprobar que los clusters correspondían a zonas lógicamente agrupadas.",
+          "Se observo el mapa generado con Folium para comprobar que los clusters correspondían a zonas lógicamente agrupadas.",
           "Se validaron los resultados con observaciones empíricas de la ciudad (zonas congestionadas, zonas con vida nocturna, etc.).",
           "Se verificó la coherencia entre horarios (por ejemplo, aumento de accidentes nocturnos en sectores de entretenimiento).",
         ],
       },
     ],
     extraParagraphs: [
-      "La calidad del clustering fue considerada adecuada para los fines del proyecto, aunque se mencionó la posibilidad de implementar métricas como la silueta o el codo en futuras iteraciones.",
+      "La calidad del clustering fue considerada adecuada para los fines del proyecto.",
     ],
   },
   {
@@ -138,7 +132,7 @@ const explanationSteps = [
       {
         subtitle: "Aspectos destacables:",
         items: [
-          "Los mapas permiten una exploración visual clara de las zonas con más siniestros en la región.",
+          "El mapa permite una exploración visual clara de las zonas con más siniestros en la región.",
           "El algoritmo y sistema puede escalar fácilmente para analizar otras regiones o otros países.",
         ],
       },
@@ -184,12 +178,6 @@ function App() {
             de datos a registros públicos.
           </Typography>
 
-          <MapSelector
-            activeMap={activeMap}
-            setActiveMap={setActiveMap}
-            mapSources={mapSources}
-          />
-
           <Box
             sx={{
               display: "flex",
@@ -197,7 +185,7 @@ function App() {
               gap: 2,
             }}
           >
-            <MapDisplay mapSources={mapSources} activeMap={activeMap} />
+            <MapDisplay mapSources={mapSources} />
             <LegendAndControl
               mapSrc={mapSources[activeMap].src}
               onFullscreen={() => setOpenFullscreen(true)}

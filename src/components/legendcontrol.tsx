@@ -50,13 +50,41 @@ export const LegendAndControl = ({
         }}
       >
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-          Leyenda de Concentración de Accidentes
+          Leyenda de Agrupación de Zonas de Accidentes
         </Typography>
-        <Stack spacing={1}>
+        <Stack spacing={1} mb={2}>
           {[
             { color: "#f1964d", label: "Alta" },
             { color: "#eecb40", label: "Media" },
             { color: "#95d862", label: "Baja" },
+          ].map((item, i) => (
+            <Stack key={i} direction="row" alignItems="center" spacing={1}>
+              <Box
+                sx={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: "50%",
+                  bgcolor: item.color,
+                  boxShadow: 1,
+                }}
+              />
+              <Typography variant="body2" color="text.primary">
+                {item.label}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>  
+        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+          Leyenda de Cantidad Total de Accidentes por Zona
+        </Typography>
+        <Stack spacing={1}>
+          {[
+            { color: "blue", label: "0 - 5 (Muy Bajo)" },
+            { color: "green", label: "6 - 15 (Bajo)" },
+            { color: "yellow", label: "16 - 30 (Medio)" },
+            { color: "orange", label: "31 - 50 (Alto)" },
+            { color: "#ff4d4d", label: "51 - 80 (Muy Alto)" },
+            { color: "#990000", label: "81+ (Crítico)" },
           ].map((item, i) => (
             <Stack key={i} direction="row" alignItems="center" spacing={1}>
               <Box
