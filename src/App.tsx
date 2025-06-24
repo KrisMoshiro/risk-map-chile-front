@@ -143,7 +143,7 @@ const explanationSteps = [
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [darkMode, setDarkMode] = useState(prefersDarkMode);
-  const [activeMap, setActiveMap] = useState(0);
+  const [activeMap] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [openFullscreen, setOpenFullscreen] = useState(false);
 
