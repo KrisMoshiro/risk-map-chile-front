@@ -20,7 +20,7 @@ import { MapDisplay } from "./components/mapdisplay";
 import { LegendAndControl } from "./components/legendcontrol";
 
 const mapSources = [
-  { src: "./src/assets/html/Map.html" },
+  { src: "/risk-map-iquique-front/map.html" },
 ];
 
 const explanationSteps = [
