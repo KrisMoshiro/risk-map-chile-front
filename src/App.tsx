@@ -1,161 +1,238 @@
-// src/App.tsx
-import { useState } from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import {
+  ThemeProvider,
+  CssBaseline,
+  Container,
+  Box,
+  Toolbar,
+  Typography,
+  Modal,
+  Button,
+  createTheme,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useMemo, useState } from "react";
+import { useMediaQuery } from "@mui/material";
 
-const sections = [
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import { ProjectExplanation } from "./components/explanation";
+import { MapDisplay } from "./components/mapdisplay";
+import { LegendAndControl } from "./components/legendcontrol";
+import { HelpModal } from "./components/helpmodal";
+
+const mapSources = [{ src: "/risk-map-iquique-front/map.html" }];
+
+const explanationSteps = [
   {
-    title: "Mapa con las zonas identificadas con más accidentes",
-    description:
-      "Mapa realizado con minería de datos con información pública sobre los accidentes en la región de Tarapacá.",
-    maps: [
-      "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map1.html",
-      "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map2.html",
-      "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map3.html",
+    title: "1. Comprensión del Negocio",
+    paragraphs: [
+      "Este proyecto busca analizar los accidentes de tránsito ocurridos en la región de Tarapacá, Chile, utilizando técnicas de minería de datos para identificar zonas críticas.",
+      "El objetivo principal es contribuir a la prevención de accidentes y la optimización de la planificación urbana y vial en la región de Tarapacá, utilizando registros de siniestros automovilísticos durante los años 2010 a 2023.",
+    ],
+    subSections: [
+      {
+        subtitle: "Problema abordado:",
+        items: [
+          "En Chile, la Comisión Nacional de Seguridad de Tránsito (CONASET) cuenta con registros de siniestros viales, sin embargo, la información disponible se presenta únicamente en forma de reportes con métricas y gráficos, en cambio Carabineros de Chile cuenta con los registros en bruto, en ambos casos ninguno cuenta con acceso directo a herramientas de visualización geográfica. Esto genera una problemática en la accesibilidad, presentación y aprovechamiento de la información, dificultando su uso para análisis más profundos y toma de decisiones informadas.",
+        ],
+      },
+      {
+        subtitle: "Restricciones:",
+        items: [
+          "Limitaciones temporales y tecnológicas para la integración de mapas dinámicos.",
+          "Los datos deben incluir registros ocurridos en la región de Tarapacá, esto aplica a zonas urbanas, y rurales.",
+          "Los registros deben ir acompañados de datos geoespaciales,la fecha y hora del siniestro.",
+        ],
+      },
+      {
+        subtitle: "Impacto esperado:",
+        items: [
+          "Identificación de zonas de mayor riesgo.",
+          "Visualización clara para apoyo a la toma de decisiones de autoridades y ciudadanos.",
+        ],
+      },
     ],
   },
   {
-    title: "Mapa con las zonas identificadas con más muertes en accidentes",
-    description:
-      "Mapa realizado con minería de datos con información pública sobre los accidentes en la región de Tarapacá.",
-    maps: [
-      "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map4.html",
-      "https://held-test-inclusive-enquiries.trycloudflare.com/statics/Map5.html",
-      "https://tu-servidor.com/mapa-muertes-c.html",
+    title: "2. Comprensión de los Datos",
+    paragraphs: [
+      "Los registros públicos de Carabineros de Chile son datos en bruto y no están segmentados por región o zona solo por año, estos incluyen información del siniestro como fecha, hora, tipo de accidente, región, comuna, etc.",
+    ],
+    subSections: [
+      {
+        subtitle: "Actividades realizadas:",
+        items: [
+          "Revisión de la estructura del archivo CSV.",
+          "Análisis exploratorio con pandas para entender la distribución de los datos.",
+        ],
+      },
     ],
   },
   {
-    title: "Mapa con las zonas identificadas con más lesionados en accidentes",
-    description:
-      "Mapa realizado con minería de datos con información pública sobre los accidentes en la región de Tarapacá.",
-    maps: [
-      "https://tu-servidor.com/mapa-lesionados-a.html",
-      "https://tu-servidor.com/mapa-lesionados-b.html",
-      "https://tu-servidor.com/mapa-lesionados-c.html",
+    title: "3. Preparación de los Datos",
+    paragraphs: [
+      "Se aplicaron métodos para realizar la correlación entre los datos del dataset para identificar qué features no serían utilizados, en este caso para el contexto del proyecto y el mismo dataset, la mayoría de los samples son variables cualitativas, sólo unas pocas son cuantitativas.",
+    ],
+    subSections: [
+      {
+        subtitle: "Procesos aplicados:",
+        items: [
+          "Limpieza: eliminación de registros con valores nulos o direcciónes y identificadores inválidos.",
+          "Transformación: ajuste de formatos de datos, conversión de columnas a tipos adecuados.",
+          "Geocodificación: transformación de direcciones en coordenadas de latitud y longitud.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "4. Modelado de Datos",
+    paragraphs: [
+      "Para determinar el algoritmo de minería de datos adecuado, se consideraron tanto los objetivos técnicos como los del negocio. El objetivo de minería de datos fue identificar los puntos con mayor probabilidad de ocurrencia de accidentes de tránsito en la región de Tarapacá, mientras que el objetivo de la CONASET es reducir estos accidentes y sus consecuencias, enfocándose en el control de factores de riesgo. Al analizar ambos enfoques, se concluyó que el problema corresponde a una tarea de segmentación espacial, ya que implica agrupar incidentes por zonas de alto riesgo. Por ello, se optó por utilizar un algoritmo de clustering.",
+    ],
+    subSections: [
+      {
+        subtitle: "Herramientas utilizadas:",
+        items: ["Python", "Numpy", "Matplotlib", "Sklearn", "Folium"],
+      },
+    ],
+    extraParagraphs: [
+      "Se aplicó un algoritmo con DBSCAN para identificar automáticamente el número de clusters, esto se validó con el coeficiente de silhouette, después con folium se define el punto central del mapa sacando el promedio de las coordenadas, posteriormente los datos se segmentan según la concentración de accidentes para posteriormente graficar el mapa centrado junto con los clusters.",
+    ],
+  },
+  {
+    title: "5. Evaluación",
+    paragraphs: [
+      "La evaluación del modelo se realizó mediante análisis visual y comparativo:",
+    ],
+    subSections: [
+      {
+        subtitle: "",
+        items: [
+          "Se observo el mapa generado con Folium para comprobar que los clusters correspondían a zonas lógicamente agrupadas.",
+          "Se validaron los resultados con observaciones empíricas de la ciudad (zonas congestionadas, zonas con vida nocturna, etc.).",
+          "Se verificó la coherencia entre horarios (por ejemplo, aumento de accidentes nocturnos en sectores de entretenimiento).",
+        ],
+      },
+    ],
+    extraParagraphs: [
+      "La calidad del clustering fue considerada adecuada para los fines del proyecto.",
+    ],
+  },
+  {
+    title: "6. Implementación",
+    paragraphs: [
+      "El código de minería en Python fue implementado en un Back-end creado con Fast API, para generar los mapas automáticamente y enviarlos a una plataforma web Front-end desarrollada en React JS con Typescript y Material Design para su visualización en diversos dispositivos.",
+    ],
+    subSections: [
+      {
+        subtitle: "Aspectos destacables:",
+        items: [
+          "El mapa permite una exploración visual clara de las zonas con más siniestros en la región.",
+          "El algoritmo y sistema puede escalar fácilmente para analizar otras regiones o otros países.",
+        ],
+      },
     ],
   },
 ];
 
 function App() {
-  const [mapIndexes, setMapIndexes] = useState<number[]>(sections.map(() => 0));
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [darkMode, setDarkMode] = useState(prefersDarkMode);
+  const [activeMap] = useState(0);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [openFullscreen, setOpenFullscreen] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
-  const handleMapChange = (sectionIndex: number, newIndex: number) => {
-    const updated = [...mapIndexes];
-    updated[sectionIndex] = newIndex;
-    setMapIndexes(updated);
-  };
+  const theme = useMemo(
+    () => createTheme({ palette: { mode: darkMode ? "dark" : "light" } }),
+    [darkMode]
+  );
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="fixed" color="primary" elevation={2}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Risk Map Iquique Project
+      <Header
+        darkMode={darkMode}
+        toggleTheme={() => setDarkMode((prev) => !prev)}
+      />
+      <Toolbar />
+
+      <Box
+        sx={{ py: 3, px: 2, bgcolor: "background.default", minHeight: "100vh" }}
+      >
+        <Container maxWidth="md">
+          <Typography
+            variant="h1"
+            align="center"
+            sx={{ fontSize: { xs: "1rem", md: "2.2rem" }, fontWeight: 600 }}
+          >
+            Mapas de accidentes Automovilísticos en la región de Tarapacá
           </Typography>
-        </Toolbar>
-      </AppBar>
-      <Toolbar /> {/* espacio compensatorio para el header */}
-      <div className="bg-gradient-to-b from-blue-50 to-green-50">
-        {sections.map((section, idx) => (
-          <Container
-            key={idx}
+
+          <Typography align="center" mb={2}>
+            Estos mapas son el resultado de la aplicación de técnicas de minería
+            de datos a registros públicos.
+          </Typography>
+
+          <Box
             sx={{
-              maxWidth: "100vh",
-              maxHeight: "100vh",
-              py: 8,
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+              gap: 2,
             }}
           >
-            <Typography
-              variant="h4"
-              gutterBottom
-              sx={{
-                fontWeight: "bold",
-                color: "primary.main",
-                textAlign: "center",
-              }}
-            >
-              {section.title}
-            </Typography>
+            <MapDisplay mapSources={mapSources} />
+            <LegendAndControl
+              mapSrc={mapSources[activeMap].src}
+              onFullscreen={() => setOpenFullscreen(true)}
+              onHelp={() => setShowHelp(true)}
+            />
+          </Box>
 
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "center", mb: 4, maxWidth: 600 }}
-            >
-              {section.description}
-            </Typography>
+          <Box textAlign="center" mt={3}>
+            <Button onClick={() => setShowExplanation((prev) => !prev)}>
+              {showExplanation
+                ? "Ocultar explicación"
+                : "¿Cómo se desarrolló este proyecto?"}
+            </Button>
+          </Box>
 
-            {/* Botonera para cambiar mapas */}
-            <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
-              {section.maps.map((_, mapIdx) => (
-                <Button
-                  key={mapIdx}
-                  variant={
-                    mapIndexes[idx] === mapIdx ? "contained" : "outlined"
-                  }
-                  onClick={() => handleMapChange(idx, mapIdx)}
-                  size="small"
-                >
-                  Mapa {mapIdx + 1}
-                </Button>
-              ))}
-            </Stack>
+          {showExplanation && (
+            <Container maxWidth="md">
+              <ProjectExplanation steps={explanationSteps} />
+            </Container>
+          )}
+        </Container>
+      </Box>
 
-            {/* Box del mapa */}
-            <Box
-              sx={{
-                width: "100%",
-                height: "650px",
-                borderRadius: 4,
-                overflow: "hidden",
-                boxShadow: 3,
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.02)",
-                },
-              }}
-            >
-              <iframe
-                src={section.maps[mapIndexes[idx]]}
-                title={`Mapa ${idx + 1}`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-              />
-            </Box>
-          </Container>
-        ))}
+      <Footer darkMode={darkMode} />
 
-        {/* Footer ancho completo */}
+      <Modal open={openFullscreen} onClose={() => setOpenFullscreen(false)}>
         <Box
-          component="footer"
           sx={{
-            bgcolor: "primary.main",
-            color: "white",
-            py: 3,
-            textAlign: "center",
-            mt: 8,
-            width: "100%",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            bgcolor: "background.default",
+            zIndex: 1300,
           }}
         >
-          <Typography variant="body2">
-            © {new Date().getFullYear()} Risk Map Project. Todos los derechos
-            reservados.
-          </Typography>
+          <Box sx={{ position: "absolute", top: 10, left: 16 }}>
+            <Button
+              onClick={() => setOpenFullscreen(false)}
+              variant="contained"
+              startIcon={<ArrowBackIcon />}
+              sx={{ borderRadius: 8 }}
+            >
+              Volver
+            </Button>
+          </Box>
         </Box>
-      </div>
-    </>
+      </Modal>
+      <HelpModal open={showHelp} onClose={() => setShowHelp(false)} />
+    </ThemeProvider>
   );
 }
 
