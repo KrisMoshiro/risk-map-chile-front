@@ -18,10 +18,9 @@ import { Footer } from "./components/footer";
 import { ProjectExplanation } from "./components/explanation";
 import { MapDisplay } from "./components/mapdisplay";
 import { LegendAndControl } from "./components/legendcontrol";
+import { HelpModal } from "./components/helpmodal";
 
-const mapSources = [
-  { src: "./src/assets/html/Map.html" },
-];
+const mapSources = [{ src: "/risk-map-iquique-front/map.html" }];
 
 const explanationSteps = [
   {
@@ -65,7 +64,6 @@ const explanationSteps = [
         items: [
           "Revisión de la estructura del archivo CSV.",
           "Análisis exploratorio con pandas para entender la distribución de los datos.",
-          "Validación de la consistencia de coordenadas, tramos horarios y niveles de afectación.",
         ],
       },
     ],
@@ -79,14 +77,11 @@ const explanationSteps = [
       {
         subtitle: "Procesos aplicados:",
         items: [
-          "Limpieza: eliminación de registros con valores nulos o coordenadas inválidas.",
-          "Transformación: ajuste de formatos de hora, conversión de columnas a tipos adecuados.",
+          "Limpieza: eliminación de registros con valores nulos o direcciónes y identificadores inválidos.",
+          "Transformación: ajuste de formatos de datos, conversión de columnas a tipos adecuados.",
           "Geocodificación: transformación de direcciones en coordenadas de latitud y longitud.",
         ],
       },
-    ],
-    extraParagraphs: [
-      "Esto es esencial para limpiar y unificar los datos, por otra parte la geocodificación era imprescindible ya que era necesario obtener las coordenadas en latitud y longitud para ubicar los accidentes.",
     ],
   },
   {
@@ -146,6 +141,7 @@ function App() {
   const [activeMap] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [openFullscreen, setOpenFullscreen] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const theme = useMemo(
     () => createTheme({ palette: { mode: darkMode ? "dark" : "light" } }),
@@ -189,6 +185,7 @@ function App() {
             <LegendAndControl
               mapSrc={mapSources[activeMap].src}
               onFullscreen={() => setOpenFullscreen(true)}
+              onHelp={() => setShowHelp(true)}
             />
           </Box>
 
@@ -234,6 +231,7 @@ function App() {
           </Box>
         </Box>
       </Modal>
+      <HelpModal open={showHelp} onClose={() => setShowHelp(false)} />
     </ThemeProvider>
   );
 }

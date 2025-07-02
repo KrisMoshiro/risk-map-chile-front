@@ -5,7 +5,7 @@ interface MapDisplayProps {
   mapSources: { src: string }[];
 }
 
-export const MapDisplay = ({ mapSources}: MapDisplayProps) => {
+export const MapDisplay = ({ mapSources }: MapDisplayProps) => {
   const [loaded, setLoaded] = useState<boolean[]>(
     Array(mapSources.length).fill(false)
   );
@@ -20,6 +20,7 @@ export const MapDisplay = ({ mapSources}: MapDisplayProps) => {
 
   return (
     <Box
+      className="tour-map"
       sx={{
         position: "relative",
         width: "100%",
