@@ -8,18 +8,22 @@ import {
   useTheme,
 } from "@mui/material";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 interface LegendAndControlProps {
   mapSrc: string;
   onFullscreen: () => void;
+  onHelp: () => void;
 }
 
 export const LegendAndControl = ({
   mapSrc,
   onFullscreen,
+  onHelp,
 }: LegendAndControlProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isVerySmall = useMediaQuery("(max-width:350px)");
 
   const handleOpen = () => {
     if (isMobile) {
@@ -31,6 +35,7 @@ export const LegendAndControl = ({
 
   return (
     <Box
+      className="tour-legend"
       sx={{
         minWidth: 200,
         maxWidth: 250,
@@ -41,6 +46,41 @@ export const LegendAndControl = ({
         mt: { xs: 2, md: 0 },
       }}
     >
+      <Stack direction="row" spacing={1} width="100%">
+        <Button
+          className="fullscreen-button"
+          onClick={handleOpen}
+          variant="outlined"
+          size="small"
+          fullWidth
+          startIcon={<FullscreenIcon />}
+          sx={{
+            borderRadius: 8,
+            fontSize: isVerySmall ? "0" : "0.7rem", // Oculta texto en pantallas muy pequeñas
+            px: isVerySmall ? 1 : 2,
+            minWidth: isVerySmall ? "40px" : undefined,
+          }}
+        >
+          {!isVerySmall && "Pantalla completa"}
+        </Button>
+
+        <Button
+          className="help-button"
+          onClick={onHelp}
+          variant="outlined"
+          size="small"
+          fullWidth
+          startIcon={<HelpOutlineIcon />}
+          sx={{
+            borderRadius: 8,
+            fontSize: isVerySmall ? "0" : "0.7rem", // Oculta texto en pantallas muy pequeñas
+            px: isVerySmall ? 1 : 2,
+            minWidth: isVerySmall ? "40px" : undefined,
+          }}
+        >
+          {!isVerySmall && "Ayuda"}
+        </Button>
+      </Stack>
       <Box
         sx={{
           bgcolor: "background.paper",
@@ -73,7 +113,7 @@ export const LegendAndControl = ({
               </Typography>
             </Stack>
           ))}
-        </Stack>  
+        </Stack>
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Leyenda de Cantidad Total de Accidentes por Zona
         </Typography>
@@ -103,16 +143,6 @@ export const LegendAndControl = ({
           ))}
         </Stack>
       </Box>
-      <Button
-        onClick={handleOpen}
-        variant="outlined"
-        size="small"
-        fullWidth
-        startIcon={<FullscreenIcon />}
-        sx={{ borderRadius: 8 }}
-      >
-        Ver en pantalla completa
-      </Button>
     </Box>
   );
 };
