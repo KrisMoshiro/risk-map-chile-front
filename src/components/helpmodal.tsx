@@ -34,7 +34,7 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
       <ul>
         <li>
           <Typography variant="body2">
-            Usar el <b>mouse</b> con el <b>click izquierdo</b> para arrastrar. y hacer
+            Usar el <b>mouse</b> con el <b>click izquierdo</b> para arrastrar y hacer
             zoom con la rueda.
           </Typography>
         </li>
@@ -51,7 +51,7 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
         </li>
         <li>
           <Typography variant="body2">
-            Haz clic o toca los circulos de agrupamiento para hacer zoom o
+            Haz clic o toca los círculos de agrupamiento para hacer zoom o
             visualizar información.
           </Typography>
         </li>
@@ -69,7 +69,7 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
         <li>
           <Typography variant="body2">
             para ver los datos de cada agrupación de accidentes se debe hacer zoom al nivel
-            maximo.
+            máximo.
           </Typography>
         </li>
         <li>

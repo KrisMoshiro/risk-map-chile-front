@@ -89,8 +89,12 @@ export const LegendAndControl = ({
           width: "100%",
         }}
       >
+  
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-          Leyenda de Agrupación de Zonas de Accidentes
+          Leyendas
+        </Typography>
+        <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+          Zona de Riesgo Agrupadas por Nivel de Zoom 🔍
         </Typography>
         <Stack spacing={1} mb={2}>
           {[
@@ -114,14 +118,13 @@ export const LegendAndControl = ({
             </Stack>
           ))}
         </Stack>
-        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-          Leyenda de Cantidad Total de Accidentes por Zona
+        <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+          Zona de Riesgo por Accidentes
         </Typography>
         <Stack spacing={1}>
           {[
-            { color: "blue", label: "0 - 5 (Muy Bajo)" },
-            { color: "green", label: "6 - 15 (Bajo)" },
-            { color: "yellow", label: "16 - 30 (Medio)" },
+            { color: "green", label: "0 - 10 (Bajo)" },
+            { color: "yellow", label: "11 - 30 (Medio)" },
             { color: "orange", label: "31 - 50 (Alto)" },
             { color: "#ff4d4d", label: "51 - 80 (Muy Alto)" },
             { color: "#990000", label: "81+ (Crítico)" },
