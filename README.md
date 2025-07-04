@@ -1,5 +1,4 @@
-![image](https://github.com/user-attachments/assets/649fdeab-a8cd-4a10-b063-e8e6a141bd70)
-
+![Logo-Ch7jf16K](https://github.com/user-attachments/assets/031e802d-2d0e-47f5-a1b8-7ba44c6bd5d1)
 # Risk Map Iquique Front
 
 ![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
