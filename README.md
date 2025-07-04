@@ -1,5 +1,8 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6ffa9fe9-eb99-4fce-bfe2-7a90ad716458" alt="Risk Map Iquique Banner" width="600"/>
+</p>
 
-# ![Logo-Ch7jf16K](https://github.com/user-attachments/assets/4cfb0e0b-7ad5-4b5f-833e-c1cae9aeea3a) Risk Map Iquique Front
+# Risk Map Iquique Front
 
 ![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -67,12 +70,6 @@ npm install
 
 # Correr en modo desarrollo
 npm run dev
-
-# Build para producción
-npm run build
-
-# Vista previa local de la build
-npm run preview
 
 # Deploy a GitHub Pages
 npm run deploy
