@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/6ffa9fe9-eb99-4fce-bfe2-7a90ad716458" alt="Risk Map Iquique Banner" width="600"/>
+  <img src="https://github.com/user-attachments/assets/522291a8-8273-4e93-b8dd-95406795ccb7" alt="Risk Map Iquique Banner" width="600"/>
 </p>
 
 # Risk Map Iquique Front
