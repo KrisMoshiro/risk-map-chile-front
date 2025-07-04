@@ -1,4 +1,6 @@
-# 🌍 Risk Map Iquique Front
+![image](https://github.com/user-attachments/assets/649fdeab-a8cd-4a10-b063-e8e6a141bd70)
+
+# Risk Map Iquique Front
 
 ![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -7,6 +9,8 @@
 Repositorio Front-End del proyecto de investigación con minería de datos.
 
 🔗 **Demo:** [https://krismoshiro.github.io/risk-map-iquique-front/](https://krismoshiro.github.io/risk-map-iquique-front/)
+
+![image](https://github.com/user-attachments/assets/0e33f5b9-6817-40a3-8ca8-db425d9f2f23)
 
 ---
 
