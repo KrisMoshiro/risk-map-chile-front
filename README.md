@@ -1,4 +1,8 @@
-# 🌍 Risk Map Iquique Front
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/522291a8-8273-4e93-b8dd-95406795ccb7" alt="Risk Map Iquique Banner" width="400"/>
+</p>
+
+# Risk Map Iquique Front
 
 ![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -7,6 +11,8 @@
 Repositorio Front-End del proyecto de investigación con minería de datos.
 
 🔗 **Demo:** [https://krismoshiro.github.io/risk-map-iquique-front/](https://krismoshiro.github.io/risk-map-iquique-front/)
+
+![image](https://github.com/user-attachments/assets/0e33f5b9-6817-40a3-8ca8-db425d9f2f23)
 
 ---
 
@@ -64,12 +70,6 @@ npm install
 
 # Correr en modo desarrollo
 npm run dev
-
-# Build para producción
-npm run build
-
-# Vista previa local de la build
-npm run preview
 
 # Deploy a GitHub Pages
 npm run deploy
