@@ -204,7 +204,6 @@ function App() {
           )}
         </Container>
       </Box>
-
       <Footer darkMode={darkMode} />
 
       <Modal open={openFullscreen} onClose={() => setOpenFullscreen(false)}>
@@ -219,7 +218,15 @@ function App() {
             zIndex: 1300,
           }}
         >
-          <Box sx={{ position: "absolute", top: 10, left: 16 }}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: 10,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 1400,
+            }}
+          >
             <Button
               onClick={() => setOpenFullscreen(false)}
               variant="contained"
@@ -228,6 +235,27 @@ function App() {
             >
               Volver
             </Button>
+          </Box>
+
+          {/* Aquí insertamos el iframe */}
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 1000,
+            }}
+          >
+            <iframe
+              src={mapSources[activeMap].src}
+              title="Mapa en pantalla completa"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+            />
           </Box>
         </Box>
       </Modal>
