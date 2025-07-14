@@ -202,7 +202,6 @@ function App() {
               <Explanation steps={explanationSteps} />
             </Container>
           )}
-          
         </Container>
       </Box>
       <Footer darkMode={darkMode} />

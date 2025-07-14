@@ -72,7 +72,7 @@ export const LegendAndControl = ({
           startIcon={<HelpOutlineIcon />}
           sx={{
             borderRadius: 8,
-            fontSize: isVerySmall ? "0" : "0.7rem", 
+            fontSize: isVerySmall ? "0" : "0.7rem",
             px: isVerySmall ? 1 : 2,
             minWidth: isVerySmall ? "40px" : undefined,
           }}
@@ -88,7 +88,6 @@ export const LegendAndControl = ({
           width: "100%",
         }}
       >
-  
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Leyendas
         </Typography>

@@ -34,8 +34,8 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
       <ul>
         <li>
           <Typography variant="body2">
-            Usar el <b>mouse</b> con el <b>click izquierdo</b> para arrastrar y hacer
-            zoom con la rueda.
+            Usar el <b>mouse</b> con el <b>click izquierdo</b> para arrastrar y
+            hacer zoom con la rueda.
           </Typography>
         </li>
         <li>
@@ -45,8 +45,8 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
         </li>
         <li>
           <Typography variant="body2">
-            En <b>dispositivos táctiles</b>, puedes navegar con los <b>dedos</b> y
-            hacer zoom con ellos.
+            En <b>dispositivos táctiles</b>, puedes navegar con los <b>dedos</b>{" "}
+            y hacer zoom con ellos.
           </Typography>
         </li>
         <li>
@@ -68,8 +68,8 @@ export const HelpModal = ({ open, onClose }: HelpModalProps) => (
       <ul>
         <li>
           <Typography variant="body2">
-            para ver los datos de cada agrupación de accidentes se debe hacer zoom al nivel
-            máximo.
+            para ver los datos de cada agrupación de accidentes se debe hacer
+            zoom al nivel máximo.
           </Typography>
         </li>
         <li>

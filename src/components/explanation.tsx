@@ -73,8 +73,6 @@ export const Explanation = ({ steps }: Props) => (
         </Box>
       </motion.div>
     ))}
-
-    {/* Sección final con link a Google Colab */}
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +90,7 @@ export const Explanation = ({ steps }: Props) => (
         <Button
           variant="outlined"
           color="primary"
-          href="https://colab.research.google.com/drive/1auWH-5G5bs2ycHS1uqpXkIOKMTArsCxb?usp=sharing" // reemplaza este enlace con el tuyo real
+          href="https://colab.research.google.com/drive/1auWH-5G5bs2ycHS1uqpXkIOKMTArsCxb?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           sx={{ mt: 2, borderRadius: 8 }}
