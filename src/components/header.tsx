@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import Logo from "../assets/Img/Logo.png";
