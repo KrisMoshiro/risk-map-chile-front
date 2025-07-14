@@ -15,7 +15,7 @@ import { useMediaQuery } from "@mui/material";
 
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
-import { ProjectExplanation } from "./components/explanation";
+import { Explanation } from "./components/explanation";
 import { MapDisplay } from "./components/mapdisplay";
 import { LegendAndControl } from "./components/legendcontrol";
 import { HelpModal } from "./components/helpmodal";
@@ -199,7 +199,7 @@ function App() {
 
           {showExplanation && (
             <Container maxWidth="md">
-              <ProjectExplanation steps={explanationSteps} />
+              <Explanation steps={explanationSteps} />
             </Container>
           )}
         </Container>
@@ -236,8 +236,6 @@ function App() {
               Volver
             </Button>
           </Box>
-
-          {/* Aquí insertamos el iframe */}
           <Box
             sx={{
               position: "absolute",
