@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
 
 interface SubSection {
@@ -17,7 +17,7 @@ interface Props {
   steps: Step[];
 }
 
-export const ProjectExplanation = ({ steps }: Props) => (
+export const Explanation = ({ steps }: Props) => (
   <Box sx={{ mt: 4 }}>
     {steps.map((step, idx) => (
       <motion.div
@@ -73,5 +73,33 @@ export const ProjectExplanation = ({ steps }: Props) => (
         </Box>
       </motion.div>
     ))}
+
+    {/* Sección final con link a Google Colab */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <Box sx={{ p: 3, textAlign: "center" }}>
+        <Typography variant="h6" gutterBottom>
+          ¿Te gustaría profundizar en cómo se desarrolló este proyecto?
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          Puedes revisar el análisis completo y el código fuente en un cuaderno
+          interactivo de Google Colaboratory:
+        </Typography>
+        <Button
+          variant="outlined"
+          color="primary"
+          href="https://colab.research.google.com/drive/1auWH-5G5bs2ycHS1uqpXkIOKMTArsCxb?usp=sharing" // reemplaza este enlace con el tuyo real
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ mt: 2, borderRadius: 8 }}
+        >
+          Ver en Google Colab
+        </Button>
+      </Box>
+    </motion.div>
   </Box>
 );

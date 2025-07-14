@@ -1,4 +1,3 @@
-// src/components/LegendAndControl.tsx
 import {
   Box,
   Button,
@@ -56,7 +55,7 @@ export const LegendAndControl = ({
           startIcon={<FullscreenIcon />}
           sx={{
             borderRadius: 8,
-            fontSize: isVerySmall ? "0" : "0.7rem", // Oculta texto en pantallas muy pequeñas
+            fontSize: isVerySmall ? "0" : "0.7rem",
             px: isVerySmall ? 1 : 2,
             minWidth: isVerySmall ? "40px" : undefined,
           }}
@@ -73,7 +72,7 @@ export const LegendAndControl = ({
           startIcon={<HelpOutlineIcon />}
           sx={{
             borderRadius: 8,
-            fontSize: isVerySmall ? "0" : "0.7rem", // Oculta texto en pantallas muy pequeñas
+            fontSize: isVerySmall ? "0" : "0.7rem", 
             px: isVerySmall ? 1 : 2,
             minWidth: isVerySmall ? "40px" : undefined,
           }}

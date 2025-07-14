@@ -1,4 +1,3 @@
-// src/components/MapSelector.tsx
 import {
   Stack,
   Button,
