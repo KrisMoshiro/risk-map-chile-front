@@ -102,34 +102,28 @@ const explanationSteps = [
   {
     title: "5. Evaluación",
     paragraphs: [
-      "La evaluación del modelo se realizó mediante análisis visual y comparativo:",
+      "Se observó el mapa generado, para corroborar la calidad de las agrupaciones, verificando las similitudes con la vida real. Examinando las zonas de la ciudad donde se concentra la congestión vehicular, rotondas, y calles cerca de instituciones educaciones. Para fortalecer la evaluación, se evaluó la coherencia de los horarios en dichas zonas, verificando si corresponde con los momentos de mayor ocurrencia de accidentes.",
     ],
     subSections: [
       {
         subtitle: "",
-        items: [
-          "Se observo el mapa generado con Folium para comprobar que los clusters correspondían a zonas lógicamente agrupadas.",
-          "Se validaron los resultados con observaciones empíricas de la ciudad (zonas congestionadas, zonas con vida nocturna, etc.).",
-          "Se verificó la coherencia entre horarios (por ejemplo, aumento de accidentes nocturnos en sectores de entretenimiento).",
-        ],
+        items: [],
       },
     ],
-    extraParagraphs: [
-      "La calidad del clustering fue considerada adecuada para los fines del proyecto.",
-    ],
+    extraParagraphs: [],
   },
   {
     title: "6. Implementación",
     paragraphs: [
-      "El código de minería en Python fue implementado en un Back-end creado con Fast API, para generar los mapas automáticamente y enviarlos a una plataforma web Front-end desarrollada en React JS con Typescript y Material Design para su visualización en diversos dispositivos.",
+      "El mapa generado fue incorporado en la presente página web con el objetivo de entregar un mejor contexto visual a los usuarios, facilitando la orientación y comprensión de los resultados. Por otro lado, el algoritmo desarrollado para la minería de datos en Python fue implementado en un Back-end utilizando el framework FastAPI.",
+      "La idea principal consistía en generar los mapas desde el Back-end y servirlos al Front-end mediante peticiones GET. Esto permitiría actualizar los mapas sin necesidad de realizar un despliegue completo del sitio web cada vez que se requiriera modificar solo el contenido visual. Además, desde un comienzo se contempló la posibilidad de incorporar múltiples mapas con filtros personalizados e incluso mapas de distintas ciudades (para futuras versiones). Sin embargo, estas funcionalidades se vieron limitadas por la falta de recursos económicos.",
+      "Ante la imposibilidad de costear un servidor propio o contratar un proveedor de servicios, se evaluaron alternativas como GitHub Pages o servicios gratuitos. No obstante, GitHub Pages no permite desplegar un Back-end, y el proveedor gratuito utilizado presentó serias limitaciones de rendimiento, con tiempos de carga elevados y la necesidad de acceder constantemente a la página para evitar que el servidor se suspendiera por inactividad.",
+      "Como solución final, se optó por almacenar el mapa directamente en el Front-end, dentro de una carpeta estática, y cargarlo desde ahí. Si bien esta estrategia resolvió el problema de disponibilidad, implicó como desventaja que cualquier actualización del mapa requiere desplegar nuevamente todo el Front-end.",
     ],
     subSections: [
       {
-        subtitle: "Aspectos destacables:",
-        items: [
-          "El mapa permite una exploración visual clara de las zonas con más siniestros en la región.",
-          "El algoritmo y sistema puede escalar fácilmente para analizar otras regiones o otros países.",
-        ],
+        subtitle: "",
+        items: [],
       },
     ],
   },
