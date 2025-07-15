@@ -1,6 +1,6 @@
 # Risk Map Chile Front
 
-![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
+![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-chile-front/github-pages?label=Deploy&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 **Visualización interactiva de zonas críticas de accidentes en la Región de Tarapacá, Chile**  
