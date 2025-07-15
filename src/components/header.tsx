@@ -27,7 +27,7 @@ export const Header = ({ darkMode, toggleTheme }: HeaderProps) => (
         variant="h6"
         sx={{ flexGrow: 1, display: { xs: "block", sm: "none" } }}
       >
-        RMI Project
+        RMC
       </Typography>
       <IconButton color="inherit" onClick={toggleTheme}>
         {darkMode ? <Brightness7 /> : <Brightness4 />}
