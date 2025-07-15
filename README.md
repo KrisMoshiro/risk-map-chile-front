@@ -16,9 +16,9 @@ Repositorio Front-End del proyecto de investigación con minería de datos.
 
 El proyecto completo está dividido en tres repositorios:
 
-- **Frontend:** [`risk-map-iquique-front`](https://github.com/krismoshiro/risk-map-iquique-front) ← *este repositorio*
-- **Backend:** [[Repositorio Backend](#)](https://github.com/vistor05/Risk_Map_Iquique_Back)
-- **Datos procesados y crudos:** [[Repositorio de Datos](https://github.com/KrisMoshiro/risk-map-iquique-data)]
+- **Frontend:** [`risk-map-chile-front`](https://github.com/krismoshiro/risk-map-chile-front) ← *este repositorio*
+- **Backend:** [`risk-map-chile-back`](https://github.com/vistor05/risk_map_chile_back) 
+- **Datos:** [`risk-map-chile-data`](https://github.com/krismoshiro/risk-map-chile-data)
 
 ---
 
