@@ -8,11 +8,12 @@ import {
   Modal,
   Button,
   createTheme,
+  IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useMemo, useState } from "react";
 import { useMediaQuery } from "@mui/material";
-
+import CloseIcon from "@mui/icons-material/Close";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Explanation } from "./components/explanation";
@@ -20,7 +21,7 @@ import { MapDisplay } from "./components/mapdisplay";
 import { LegendAndControl } from "./components/legendcontrol";
 import { HelpModal } from "./components/helpmodal";
 
-const mapSources = [{ src: "/risk-map-iquique-front/map.html" }];
+const mapSources = [{ src: "/risk-map-chile-front/map.html" }];
 
 const explanationSteps = [
   {
@@ -136,11 +137,12 @@ function App() {
   const [showExplanation, setShowExplanation] = useState(false);
   const [openFullscreen, setOpenFullscreen] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
-
+  const [showNota, setShowNota] = useState(true);
   const theme = useMemo(
     () => createTheme({ palette: { mode: darkMode ? "dark" : "light" } }),
     [darkMode]
   );
+  const isDark = theme.palette.mode === "dark";
 
   return (
     <ThemeProvider theme={theme}>
@@ -160,14 +162,53 @@ function App() {
             align="center"
             sx={{ fontSize: { xs: "1rem", md: "2.2rem" }, fontWeight: 600 }}
           >
-            Mapas de accidentes Automovilísticos en la región de Tarapacá
+            Mapa de accidentes Automovilísticos en la región de Tarapacá
           </Typography>
 
           <Typography align="center" mb={2}>
-            Estos mapas son el resultado de la aplicación de técnicas de minería
-            de datos a registros públicos.
+            Este mapa es el resultado de la aplicación de técnicas de minería de
+            datos a registros públicos de Carabineros de Chile.
           </Typography>
-
+          {showNota && (
+            <Box
+              sx={{
+                position: "relative",
+                maxWidth: 600,
+                margin: "0 auto",
+                mb: 3,
+                p: 2,
+                pr: 5, // espacio para que el texto no choque con la X
+                border: `1px solid ${isDark ? "#FFD700" : "#B8860B"}`,
+                color: isDark ? "#FFD700" : "#B8860B",
+                borderRadius: 2,
+                backgroundColor: isDark
+                  ? "rgba(255, 215, 0, 0.1)"
+                  : "rgba(184, 134, 11, 0.1)",
+                fontSize: { xs: "0.85rem", sm: "1rem" },
+              }}
+            >
+              <Typography variant="body2">
+                <strong>Aviso:</strong> Los resultados presentados tienen un
+                margen de error y no representan con exactitud absoluta la
+                realidad. Su propósito es entregar una aproximación informada
+                basada en los datos disponibles.
+              </Typography>
+              <IconButton
+                size="small"
+                onClick={() => setShowNota(false)}
+                sx={{
+                  position: "absolute",
+                  top: 4,
+                  right: 4,
+                  color: isDark ? "#FFD700" : "#B8860B",
+                  padding: { xs: "4px", sm: "6px" }, // menos padding en móvil
+                }}
+                aria-label="cerrar nota"
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          )}
           <Box
             sx={{
               display: "flex",

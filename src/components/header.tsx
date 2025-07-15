@@ -21,13 +21,13 @@ export const Header = ({ darkMode, toggleTheme }: HeaderProps) => (
         noWrap
         sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
       >
-        Risk Map Iquique Project
+        Risk Map Chile
       </Typography>
       <Typography
         variant="h6"
         sx={{ flexGrow: 1, display: { xs: "block", sm: "none" } }}
       >
-        RMI Project
+        RMC
       </Typography>
       <IconButton color="inherit" onClick={toggleTheme}>
         {darkMode ? <Brightness7 /> : <Brightness4 />}
