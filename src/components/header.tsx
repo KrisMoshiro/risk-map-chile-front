@@ -21,7 +21,7 @@ export const Header = ({ darkMode, toggleTheme }: HeaderProps) => (
         noWrap
         sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
       >
-        Risk Map Iquique Project
+        Risk Map Chile
       </Typography>
       <Typography
         variant="h6"
