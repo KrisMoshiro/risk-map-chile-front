@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/522291a8-8273-4e93-b8dd-95406795ccb7" alt="Risk Map Iquique Banner" width="400"/>
 </p>
 
-# Risk Map Iquique Front
+# Risk Map Front
 
 ![Project Banner](https://img.shields.io/github/deployments/krismoshiro/risk-map-iquique-front/github-pages?label=Deploy&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
