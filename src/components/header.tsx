@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import { Brightness4, Brightness7 } from "@mui/icons-material";
+import { Brightness4, Brightness7, GitHub, VolunteerActivism } from "@mui/icons-material";
+
 import Logo from "../assets/Img/Logo.png";
 
 interface HeaderProps {
@@ -29,9 +30,19 @@ export const Header = ({ darkMode, toggleTheme }: HeaderProps) => (
       >
         RMC
       </Typography>
-      <IconButton color="inherit" onClick={toggleTheme}>
+      <IconButton href="https://www.paypal.com/donate/?hosted_button_id=6YCFLA9PJWU5G" target="_blank" title='Apoyanos con una donación vía Paypal' color="inherit" >
+        <VolunteerActivism/>
+      </IconButton>
+      
+     <IconButton href="https://github.com/KrisMoshiro/risk-map-chile" target="_blank" title='Ver Repositorio' color="inherit" >
+        <GitHub/>
+      </IconButton>
+
+      <IconButton title='' color="inherit" onClick={toggleTheme}>
         {darkMode ? <Brightness7 /> : <Brightness4 />}
       </IconButton>
+
+      
     </Toolbar>
   </AppBar>
 );
