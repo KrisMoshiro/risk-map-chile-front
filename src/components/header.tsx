@@ -27,7 +27,7 @@ export const Header = ({ darkMode, toggleTheme }: HeaderProps) => (
       </Typography>
       <Typography
         variant="h6"
-        sx={{ flexGrow: 1, display: { xs: "block", sm: "none" } }}
+        sx={{ flexGrow: 1, display: { xs: "block", sm: "none" }, fontSize:25,fontWeight: 600 }}
       >
         RMC
       </Typography>
