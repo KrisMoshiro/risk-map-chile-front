@@ -8,7 +8,7 @@ Repositorio Front-End del proyecto de investigación con minería de datos.
 
 🔗 **Demo:** [https://krismoshiro.github.io/risk-map-chile-front/](https://krismoshiro.github.io/risk-map-chile-front/)
 
-![image](https://github.com/user-attachments/assets/0e33f5b9-6817-40a3-8ca8-db425d9f2f23)
+![image](https://github.com/user-attachments/assets/e693e34e-bdbc-48cc-939c-bd3c5a22e707)
 
 ---
 
